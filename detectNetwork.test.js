@@ -16,9 +16,6 @@
 
   // Once you've read and understood this section, please comment it out. 
   // You will not be able to proceed with a failing test. 
-
-  it('Throws an error so it fails', function() {
-    throw new Error('Delete me!');
   });
 
   it('Doesn\'t throw an error, so it doesn\'t fail', function() {
@@ -55,8 +52,6 @@ describe('Diner\'s Club', function() {
 });
 
 describe('American Express', function() {
-  // It can get annoying to keep typing the if/throw, so here is a
-  // helper function to throw an error if the input statement isn't true.
   //if, input length is 15 digits && starts with 34 || 37 (num tests 2)
   var should = chai.should(); 
   for (var prefix = 3700; prefix <= 3799; prefix++) {
@@ -295,6 +290,7 @@ describe('China UnionPay', function() {
       (function(prefix) {
       var padString = '12345678901234567890';
       var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+      //console.log(cardNumberCurr + " " + cardNumberCurr.length)
       it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
         detectNetwork(cardNumberCurr).should.equal('China UnionPay');
         });
@@ -308,6 +304,7 @@ describe('China UnionPay', function() {
       (function(prefix) {
       var padString = '12345678901234567890';
       var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+      //console.log(cardNumberCurr + " " + cardNumberCurr.length)
       it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
         detectNetwork(cardNumberCurr).should.equal('China UnionPay');
         });
@@ -339,6 +336,7 @@ describe('Switch', function() {
     var padString = '12345678901234567890';
     var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
     if (len === 16 || len === 18 || len === 19){
+      console.log(cardNumberCurr + " " + cardNumberCurr.length);
       (function(len) {
       it('has a prefix of ' + prefix + ' and a length of ' +len+ '\'', function(){
         detectNetwork(cardNumberCurr).should.equal('Switch');
