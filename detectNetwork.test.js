@@ -45,12 +45,13 @@
 describe('Diner\'s Club', function() {
   // Be careful, tests can have bugs too...
   var should = chai.should();
-  it('has a prefix of 38 and a length of 14', function() {
-    (detectNetwork('38345678901234')).should.equal('Diner\'s Club');
-  });
-  it('has a prefix of 39 and a length of 14', function() {
-    (detectNetwork('39345678901234')).should.equal('Diner\'s Club'); 
-  });
+    for (var prefix = 3800; prefix <= 3999; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 14', function() {
+        detectNetwork(prefix+'5678901234').should.equal('Diner\'s Club');
+      });
+    })(prefix)
+  }
 });
 
 describe('American Express', function() {
@@ -58,12 +59,21 @@ describe('American Express', function() {
   // helper function to throw an error if the input statement isn't true.
   //if, input length is 15 digits && starts with 34 || 37 (num tests 2)
   var should = chai.should(); 
-  it('has a prefix of 34 and a length of 15', function() {
-    (detectNetwork('343456789012345')).should.equal('American Express');
-  });
-  it('has a prefix of 37 and a length of 15', function() {
-    (detectNetwork('373456789012345')).should.equal('American Express');
-  });
+  for (var prefix = 3700; prefix <= 3799; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 15', function() {
+        detectNetwork(prefix+'56789012345').should.equal('American Express');
+      });
+    })(prefix)
+  }
+  for (var prefix = 3400; prefix <= 3499; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 15', function() {
+        detectNetwork(prefix+'56789012345').should.equal('American Express');
+      });
+    })(prefix)
+  }
+
 });
 
 describe('Visa', function() {
@@ -72,15 +82,98 @@ describe('Visa', function() {
   // Search the documentation to figure out how to access it. 
   //   http://chaijs.com/
   var should = chai.should();
-  it('has a prefix of 4 and a length of 13', function() {
-    (detectNetwork('4123456789012')).should.equal('Visa');
-  });
-  it('has a prefix of 4 and a length of 16', function() {
-    (detectNetwork('4123456789012345')).should.equal('Visa');
-  });
-  it('has a prefix of 4 and a length of 19', function() {
-    (detectNetwork('4123456789012345678')).should.equal('Visa');
-  });
+
+  for (var len =13 ; len<= 19 ; len++) {
+    if (len ===13 || len === 16 || len ===19) {
+      (function(len) {
+      for (var prefix = 4000 ; prefix <= 4902 ; prefix++) {
+        (function(prefix) {
+        var padString = '12345678901234567890';
+        var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+        it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
+          detectNetwork(cardNumberCurr).should.equal('Visa');
+            });
+          })(prefix)
+        }
+      })(len)
+    }
+  }
+  for (var len =13 ; len<= 19 ; len++) {
+    if (len === 16 || len ===19) {
+      (function(len) {
+      for (var prefix = 4904 ; prefix <= 4904 ; prefix++) {
+        (function(prefix) {
+        var padString = '12345678901234567890';
+        var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+        it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
+          detectNetwork(cardNumberCurr).should.equal('Visa');
+            });
+          })(prefix)
+        }
+      })(len)
+    }
+  }
+  for (var len =13 ; len<= 19 ; len++) {
+    if (len === 16 || len ===19) {
+      (function(len) {
+      for (var prefix = 4906 ; prefix <= 4910 ; prefix++) {
+        (function(prefix) {
+        var padString = '12345678901234567890';
+        var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+        it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
+          detectNetwork(cardNumberCurr).should.equal('Visa');
+            });
+          })(prefix)
+        }
+      })(len)
+    }
+  }
+  for (var len =13 ; len<= 19 ; len++) {
+    if (len === 16 || len ===19) {
+      (function(len) {
+      for (var prefix = 4912 ; prefix <= 4935 ; prefix++) {
+        (function(prefix) {
+        var padString = '12345678901234567890';
+        var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+        it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
+          detectNetwork(cardNumberCurr).should.equal('Visa');
+            });
+          })(prefix)
+        }
+      })(len)
+    }
+  }
+  for (var len =13 ; len<= 19 ; len++) {
+    if (len === 16 || len ===19) {
+      (function(len) {
+      for (var prefix = 4937 ; prefix <= 4999 ; prefix++) {
+        (function(prefix) {
+        var padString = '12345678901234567890';
+        var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+        it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
+          detectNetwork(cardNumberCurr).should.equal('Visa');
+            });
+          })(prefix)
+        }
+      })(len)
+    }
+  }
+    for (var len =13 ; len<= 13 ; len++) {
+    if (len ===13) {
+      (function(len) {
+      for (var prefix = 4902 ; prefix <= 4999 ; prefix++) {
+        (function(prefix) {
+        var padString = '12345678901234567890';
+        var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+        it('has a prefix of ' + prefix + ' and a length of ' + len + '\'', function() {
+          detectNetwork(cardNumberCurr).should.equal('Visa');
+            });
+          })(prefix)
+        }
+      })(len)
+    }
+  }
+
 });
 
 describe('MasterCard', function() {
@@ -100,10 +193,10 @@ describe('MasterCard', function() {
   // use either expect or should, but not both.   
   */
   //if, first characters are 51-55 && length is 16 (num tests 5)
-  for (var prefix = 51; prefix <= 55; prefix++) {
+  for (var prefix = 510; prefix <= 559; prefix++) {
     (function(prefix) {
       it('has a prefix of ' + prefix + ' and a length of 16', function() {
-        detectNetwork(prefix+'34567890123456').should.equal('MasterCard');
+        detectNetwork(prefix+'4567890123456').should.equal('MasterCard');
       });
     })(prefix)
   }
@@ -112,13 +205,19 @@ describe('Discover', function() {
   //'Discover' : if prefix is 6011, 644-649, or 65 && length = 16 || 19
    //            if prefix is 6011, 644-649, or 65 && length = 16 || 19 (num tests 16)
   var should = chai.should();
-  it('has a prefix of 6011 and a length of 16', function() {
-    detectNetwork('6011567890123456').should.equal('Discover');
-  });
-  it('has a prefix of 6011 and a length of 19', function() {
-    detectNetwork('6011567890123456789').should.equal('Discover');
-  });
-  for (var prefix = 644; prefix <= 649; prefix++) {
+  for (var len = 16 ; len <= 19; len++) {
+    if(len === 16 || len === 19) {
+    var prefix = 6011;
+    var padString = '12345678901234567890';
+    var cardNumberCurr = prefix + padString.substr(0,(len - prefix.toString().length));
+      (function(len) {
+        it('has a prefix of ' + prefix + ' and a length of ' +len+ '\'', function(){
+          detectNetwork(cardNumberCurr).should.equal('Discover');
+        });
+      })(len)
+    }
+  }
+  for (var prefix = 644; prefix <= 659; prefix++) {
   (function(prefix) {
     it('has a prefix of ' + prefix + ' and a length of 16', function() {
       detectNetwork(prefix+'4567890123456').should.equal('Discover');
@@ -128,12 +227,6 @@ describe('Discover', function() {
     });
   })(prefix)
   }
-  it('has a prefix of 65 and a length of 16', function() {
-    detectNetwork('6534567890123456').should.equal('Discover');
-  });
-  it('has a prefix of 65 and a length of 19', function() {
-    detectNetwork('6534567890123456789').should.equal('Discover');
-  });
 });
 
 describe('Maestro', function() {
@@ -340,23 +433,3 @@ describe('Switch', function() {
 
 });
 
-
-/*
-output options,  
-  'American Express' :
-    if, input length is 15 digits && starts with 34 || 37 (num tests 2)
-  'Diner's Club' :
-    if, input length is 14 digits && starts with 38 || 39 (num tests 2)
-  'Visa' :
-    if, first character is 4 && length is 13,16, or 19 (num tests 3)
-  'MasterCard' :
-    if, first characters are 51-55 && length is 16 (num tests 5)
-  'Discover' :
-    if prefix is 6011, 644-649, or 65 && length = 16 || 19 (num tests 16)
-  'Maestro' :
-    if, prefix = 5018,5020,5038,6304 && length = 12-19 (num tests 32)
-  'China UnionPay' :
-   prefix = 622126-622925, 624-626, 6282-6288 && len 16-19 (num tests 3240)
-  'Switch' :
-    prefix: 4903,4905,4911,4936,564182,633110,6333,6759 && len 16,18,19 (num tests 24)
-*/
